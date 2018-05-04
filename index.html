@@ -17,6 +17,17 @@
     <link rel="import" href="/src/wms-app/wms-app.html">
 </head>
 <body>
-<wms-app></wms-app>
+<wms-app table-section='{
+                
+            "title": "Marvel",
+                "headers": ["nickname", "name", "lastname"],
+                "rows" : [
+                            ["Hulk", "Bruce", "Banner"],
+                            ["Spiderman","Peter", "Parker"],
+                            ["Daredevil", "Matt", "Murdock"],
+                            ["Punisher", "Frank", "Castle"]
+                        ]
+                }'>
+</wms-app>
 </body>
 </html>
