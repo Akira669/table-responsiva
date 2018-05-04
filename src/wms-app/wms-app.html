@@ -3,6 +3,10 @@
 <link rel="import" href="../../bower_components/paper-input/paper-input.html">
 <link rel="import" href="../../bower_components/paper-button/paper-button.html">
 
+<link rel="import" href="../../bower_components/iron-pages/iron-pages.html">
+<link rel="import" href="../../bower_components/app-route/app-route.html">
+<link rel="import" href="../../bower_components/app-route/app-location.html">
+
 <dom-module id="wms-app">
       <template>
         <style>
@@ -10,44 +14,255 @@
                 display: block;
             }
 
-            paper-button.info {
-                background: #00b0ff;
-                color: white;
-            }
+             :root {
+        --red-marvel: #F01720;
+        --iron-color: #B77E27;
+        --hulk-color: #A8BF6F;
+        --title-size: 25px;
+        --text-size: 16px;
+      }
 
-            paper-button.actions {
-                background: #4caf50;
-                color: white;
+            /*
+            * Header Page
+            */
+            .grid__header{
+                display: grid;
+                grid-template-columns: repeat(12,115px);
             }
-
-            .row {
+            .header__title{
                 display: flex;
-                flex-direction: row;
-                vertical-align: middle;
+                grid-column: 2/3;
+                justify-content: center;
+            }
+            .header__nav{
+                display: flex;
+                grid-column: 4/8;
+                justify-content: center;
+                align-items: center;
+                justify-content: space-around;
+                list-style: none;
+            }
+            paper-button.menu__mobile{
+             display: none;   
             }
 
-            .row paper-button {
-                position: absolute;
-                right: 0;
+            /*
+            * Container page
+            */
+            .section{
+                display: grid;
+                grid-template-columns: repeat(12,115px);
+                grid-template-rows: repeat(6,50px);
             }
+            .section__title{
+                grid-column: 2/12;
+                grid-row: 1/2;
+                display: flex;                
+                justify-content: center;
+                align-items: center;
+            }
+            .section__form{
+                grid-column: 2/12;
+                grid-row: 2/5;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+            }
+            paper-button.actions {
+                background-color: blue;
+                color: white;
+                border-radius: 4px;
+                cursor: pointer;
+                padding: 15px 30px;
+                transition: all .4s;
+            }
+            paper-button.actions:hover {
+                filter: brightness(120%);
+                box-shadow: 1px 1px 5px ;
+            }
+
+            /*
+            * Header version Mobile
+            */
+            @media screen and (max-width:425px){
+                .grid__header{
+                display: grid;
+                grid-template-columns: repeat(12,33px);
+                }
+                .header__title{
+                    display: flex;
+                    grid-column: 6/7;
+                    justify-content: center;
+                }
+                .header__nav{
+                    display: none;
+                }
+                .header__menu__mobile{
+                    display: flex;
+                    grid-column: 1/2;
+                }
+                paper-button.menu__mobile{
+                    display: initial;
+                     grid-column: 1/2;
+                }
+                  .section{
+                    display: grid;
+                    grid-template-columns: repeat(12,33px);
+                    grid-template-rows: repeat(6,50px);
+                }
+                .section__title{
+                    grid-column: 2/12;
+                    grid-row: 1/2;
+                    display: flex;                
+                    justify-content: center;
+                    align-items: center;
+                }
+                .section__form{
+                    grid-column: 2/12;
+                    grid-row: 2/5;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    align-items: center;
+                }
+
+            }
+
+            .section__table{
+                padding-top: 50px;
+                grid-column: 3/12;
+                grid-row: 5/7;
+                text-align: center;
+            }
+    #tablepolymer {
+      cursor: pointer;
+    font-family: 'Marvel', sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    #tablepolymer td, #tablepolymer th {
+        border: 1px solid #ddd;
+        padding: 8px;
+    }
+    #tablepolymer tr:nth-child(even){background-color: var(--hulk-color);}
+    #tablepolymer tr:hover {background-color: var(--iron-color);}
+    #tablepolymer th {
+        padding-top: 12px;
+        padding-bottom: 12px;
+        text-align: left;
+        background-color: var(--red-marvel);;
+        color: white;
+    }
+
+
+
+            @media all and (max-width: 1000px) {
+                table  {display: block;}
+                table > tr { width: 100% !important; }
+                table  > th { margin-bottom: 1em; }
+            }
+
         </style>
-        <app-drawer-layout fullbleed>
-            <app-drawer swipe-open slot="drawer">
-                <app-header-layout has-scrolling-region>
-                    <app-header fixed slot="header">
-                        <h2>Menu</h2>
-                    </app-header>
-                    <li>Dibuja tabla</li>
-                    <li>Documentacion</li>
-                    <li>Autores</li>
-                </app-header-layout>
-            </app-drawer>
-            <div>
-                <h2>Tablas responsiva con polimer</h2>
-                <paper-input id="name" label="Introduce el numero de filas"></paper-input>
-                <paper-input id="name" label="Introduce el numero de columnas"></paper-input>
-                <paper-button class="actions" on-tap="saveNewParticipant">Dibujar tabla</paper-button>
+
+        <app-location route="{{route}}"></app-location>
+        <app-route
+                route="{{route}}"
+                pattern="/:page"
+                data="{{routePage}}"
+                tail="{{subroute}}">
+        </app-route>
+        <div class="grid__header">
+            <div class="header__title">
+                <h2>Central Academy</h2>    
             </div>
+            <div class="header__menu__mobile">
+                <paper-button class="menu__mobile" >Menu</paper-button>
+            </div>
+            
+                <iron-selector  selected="{{routePage.page}}" 
+                            attr-for-selected="name" 
+                            class="header__nav"
+                            role="navigation" >
+           
+                    <li><a name="table-draw" href="table-draw">Dibuja tabla</a></li>
+                    <li><a name="Documentacion" href="Documentacion">Documentacion</a></li>
+                    <li><a name="Autores" href="Autores">Autores</a></li>    
+                </iron-selector>
+        </div> 
+            <iron-pages 
+                        selected="{{routePage.page}}"
+                        attr-for-selected="name"
+                        fallback-selection="table-draw"
+                        class="container"
+                        role="main">
+                <div name="table-draw" class="section">
+                    <div class="section__title">
+                        <h2>Tablas responsiva con polimer</h2>    
+                    </div>
+                    <div class="section__form">
+                        <paper-input id="filas" label="Número de filas"></paper-input>
+                        <paper-input id="columnas" label="Número de columnas"></paper-input>
+                        <paper-button class="actions" on-tap="drawTable">Dibujar tabla</paper-button>
+                    </div>
+                    <div class="section__table">
+                         <table id="tablepolymer">
+                            <thead>
+                                 <tr>
+                                    <th colspan="3">Super heroes</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th>Nickname</th>
+                                    <th>Name</th>
+                                    <th>Last name</th>
+                                  </tr>
+                                  <tr>
+                                    <td>Hulk</td>
+                                    <td>Bruce</td>
+                                    <td>Banner</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Spiderman</td>
+                                    <td>Peter</td>
+                                    <td>Parker</td>
+                                  </tr>
+                                  <tr>
+                                    <td>Daredevil</td>
+                                    <td>Matt</td>
+                                    <td>Murdock</td>
+                                  </tr>
+                            </tbody>
+                        </table>
+<!-- <template is="dom-repeat" items="[[tableSection]]" as="section" on-dom-change="createDescription">
+<div id='myTable'>
+
+</div>   
+</template>-->
+                    </div>
+                </div>
+                <div name="Documentacion" class="section">
+                    <div class="section__title"> 
+                        <h2>Documentacion</h2>    
+                    </div>
+                    <div class="section__form">
+                       Ecmascript 6 
+                    </div>
+                    
+                </div>
+                <div name="Autores" class="section">
+                    <div class="section__title">
+                        <h4>Autores</h4>    
+                    </div>
+                    <div class="section__form">
+                        <ul>
+                            <li>Cristian</li>
+                            <li>Adolfo</li>
+                        </ul>
+                    </div>
+                </div>
+            </iron-pages>
         </app-drawer-layout>
     </template>
 
@@ -64,8 +279,35 @@
                     user: {
                         type: Object,
                         statePath: 'user'
+                    },
+                    tableSection:{
+                        type: Array,
+                        value: []
                     }
                 };
+            }
+
+            createDescription(event){
+              const tabla = document.querySelector('#myTable');
+              let table_content = '';
+              for(let title in this.tableSection){ 
+                table_content = '<table>';
+                  table_content += '<th>${{title}}</th>';
+                    for(let description in this.tableSection[title]){
+                        table_content += '<tr>${{this.tableSection[title][description]}}</tr><tr>';
+                            for(let column in this.tableSection[title][description]){
+                    table_content += '<td>{{this.tableSection[title][description][column]}}</td>';
+                  }table_content += '</tr>';
+                  table_content += '</table>';
+                  tabla.innerHTML= table_content; 
+                    }
+                } 
+            }
+
+             drawTable() {
+                let filas = this.$.filas.value;
+                let column = this.$.columnas.value;
+                toastr.success('Dibujando tabla...');
             }
         }
 
