@@ -83,12 +83,34 @@
                 grid-column: 2/12;
                 grid-row: 2/7;
                 display: flex;
-                justify-content: center;
-                align-items: center;
+                justify-content: flex-start;
+                align-items: stretch;
+                text-align: justify;
             }
-            .section__form ul{
-                grid-column: 2/12;
+
+            .form__es6{
+                grid-column: 3/5;
                 grid-row: 2/7;
+                font-size: 13px;   
+                padding-left: 15px;
+            }
+            .form__js{
+                grid-column: 5/7;
+                grid-row: 2/7;
+                font-size: 13px;
+                padding-left: 15px;
+            }
+            .form__polymer{
+                grid-column: 7/9;
+                grid-row: 2/7;
+                font-size: 13px;
+                padding-left: 15px;
+            }
+            .form__css{
+                grid-column: 9/11;
+                grid-row: 2/7;
+                font-size: 13px;
+                padding-left: 15px;
             }
             .section__table{
                 grid-column: 3/12;
@@ -159,8 +181,6 @@
                 flex-direction: column;
                 width: 100%;
                 border: 1px solid var(--line-color);
-
-
             }
 
 
@@ -228,8 +248,6 @@
                 #table > tr {
                     padding: 0 15px;
                     background-color: var(--red-marvel);
-
-                
                 }
 
                 #table tr:nth-child(even) {
@@ -335,7 +353,7 @@
                                 <h4>Ecmascript 6</h4>
                                 <div>
                                     <p>ES6 es el estándar de seguimiento de JavaScript liberado en julio de 2015.</p>
-                                    <p><mark>URL</mark> http://www.ecma-international.org/ecma-262/6.0/</p>   
+                                    <p><mark>URL</mark><br>http://www.ecma-international.org/ecma-262/6.0/</p>   
                                 </div>     
                             </div>
                            
@@ -343,7 +361,7 @@
                                 <h4>JavaScript</h4>
                                 <div>
                                     <p>JavaScript es un lengaje prototipado.</p> 
-                                    <p><mark>URL</mark> https://developer.mozilla.org/es/docs/Web/JavaScript</p>   
+                                    <p><mark>URL</mark><br>https://developer.mozilla.org/es/docs/Web/JavaScript</p>   
                                 </div>    
                             </div>
                             
@@ -352,7 +370,7 @@
                                 <div>
                                     <p>Polymer, es una liberia de Javascript que ayuda a la creacion de elementos HTML, reutilizables y personalizables, utilizados para crear aplicaciones performant y 
                                     mantenibles.</p>
-                                    <p><mark>URL</mark> https://www.polymer-project.org/</p>    
+                                    <p><mark>URL</mark><br>https://www.polymer-project.org/</p>    
                                 </div>    
                             </div>
                             
@@ -360,7 +378,7 @@
                                 <h4>CSS</h4>
                                 <div>
                                     <p>Hojas de estilo en cascada, que nos ayudan a presentar documentos HTML</p>
-                                    <p><mark>URL</mark> https://developer.mozilla.org/es/docs/Web/CSS</p>   
+                                    <p><mark>URL</mark><br>https://developer.mozilla.org/es/docs/Web/CSS</p>   
                                 </div>    
                             </div>
                     </div>
