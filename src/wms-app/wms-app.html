@@ -18,9 +18,12 @@
                 --red-marvel: #F01720;
                 --iron-color: #B77E27;
                 --hulk-color: #A8BF6F;
-                
+                --captain-marvel-color: #03A9F4;
+                --blue-spider:#0C6DA6;
+                --thanos-color:#F7C3D1;
+                --line-color:#E6B125;
                 --title-size: 25px;
-                --text-size: 16px;
+                --text-size: 20px;
 
                 --menu-color:#3BBFCA;
                 --nav-color:#7919E5;
@@ -87,29 +90,77 @@
                 grid-column: 2/12;
                 grid-row: 2/7;
             }
-            
-            #tablepolymer {
+            .section__table{
+                grid-column: 3/12;
+                grid-row: 3/7;
+                text-align: center;
+            }
+
+
+            #table {
                 cursor: pointer;
                 font-family: 'Marvel', sans-serif;
                 border-collapse: collapse;
                 width: 100%;
+                font-size: var(--text-size);
+
             }
-            #tablepolymer td, #tablepolymer th {
-                border: 1px solid #ddd;
+
+            #table td, #table th {
+                border: 1px solid var(--line-color);
                 padding: 8px;
             }
-            #tablepolymer tr:nth-child(even){
+
+            #table tr:nth-child(even) {
                 background-color: var(--hulk-color);
             }
-            #tablepolymer tr:hover {
+
+            #table tr:hover {
                 background-color: var(--iron-color);
             }
-            #tablepolymer th {
+
+            #table .header {
                 padding-top: 12px;
                 padding-bottom: 12px;
                 text-align: left;
-                background-color: var(--red-marvel);;
+                background-color: var(--red-marvel);
                 color: white;
+            }
+
+            #table .main {
+                background-color: var(--captain-marvel-color);
+            }
+
+            table {
+                width: 100%;
+                display: block;
+            }
+
+            table > tr {
+                width: 100% !important;
+            }
+
+            table > th {
+                margin-bottom: 1em;
+            }
+
+            .mobile-row {
+                display: flex;
+                flex-direction: row;
+                background-color: var(--thanos-color);
+                width: 100%;
+            }
+            .mobile-row p{
+                text-align: center;
+            }
+
+            .mobile-column   {
+                display: flex;
+                flex-direction: column;
+                width: 100%;
+                border: 1px solid var(--line-color);
+
+
             }
 
 
@@ -160,17 +211,34 @@
 
             }
 
-            .section__table{
-                grid-column: 3/12;
-                grid-row: 3/7;
-                text-align: center;
+            @media only screen and (max-width: 500px) {
+                table{
+                    border-collapse: separate;
+                    border-spacing: 15px 15px;
+                }
+                #table .header {
+                     background-color: var(--red-marvel);
+
+ 
+                }
+                #table td, #table th {
+                border: 1px solid var(--line-color);
+                padding: 4px;
+                }
+                #table > tr {
+                    padding: 0 15px;
+                    background-color: var(--red-marvel);
+
+                
+                }
+
+                #table tr:nth-child(even) {
+                background-color: var(--blue-spider);
+                }
+
             }
 
-            @media all and (max-width: 1000px) {
-                table  {display: block;}
-                table > tr { width: 100% !important; }
-                table  > th { margin-bottom: 1em; }
-            }
+            
 
         </style>
 
@@ -209,40 +277,53 @@
                         <h2>Tablas responsiva con polymer</h2>    
                     </div>
                     <div class="section__table">
-                         <table id="tablepolymer">
-                            <thead>
-                                 <tr>
-                                    <th colspan="3">Super heroes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <th>Nickname</th>
-                                    <th>Name</th>
-                                    <th>Last name</th>
-                                  </tr>
-                                  <tr>
-                                    <td>Hulk</td>
-                                    <td>Bruce</td>
-                                    <td>Banner</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Spiderman</td>
-                                    <td>Peter</td>
-                                    <td>Parker</td>
-                                  </tr>
-                                  <tr>
-                                    <td>Daredevil</td>
-                                    <td>Matt</td>
-                                    <td>Murdock</td>
-                                  </tr>
-                            </tbody>
-                        </table>
-<!-- <template is="dom-repeat" items="[[tableSection]]" as="section" on-dom-change="createDescription">
-<div id='myTable'>
-
-</div>   
-</template>-->
+                        <div id='table'>
+           <template is="dom-if" if="[[!isMobile]]">
+                <table>
+                    <tr>
+                        <th class="header main" colspan$="[[tableSection.headers.length]]">[[tableSection.title]]</th>
+                    </tr>
+                    <tr>
+                        <template is="dom-repeat" items="[[tableSection.headers]]" as="header">
+                            <td class="header">[[header]]</td>
+                        </template>
+                    </tr>
+                    <template is="dom-repeat" items="[[tableSection.rows]]" as="row">
+                        <tr>
+                            <template is="dom-repeat" items="[[row]]" as="item">
+                                <td>[[item]]</td>
+                            </template>
+                        </tr>
+                    </template>
+                </table>
+            </template>
+            
+            <template is="dom-if" if="[[isMobile]]">
+                <table>
+                    <tr>
+                        <th class="header main" colspan="2">[[tableSection.title]]</th>
+                    </tr>
+                    <template is="dom-repeat" items="[[tableSection.rows]]" as="row">
+                        <tr>
+                            <td>
+                                <div class="mobile-row">
+                                    <div class="mobile-column">
+                                        <template is="dom-repeat" items="[[tableSection.headers]]" as="header">
+                                            <td>[[header]]</td>
+                                        </template>
+                                    </div>
+                                    <div class="mobile-column">
+                                        <template is="dom-repeat" items="[[row]]" as="item">
+                                            <td>[[item]]</td>
+                                        </template>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </template>
+                </table>
+            </template>
+        </div>
                     </div>
                 </div>
                 <div name="Documentacion" class="section">
@@ -309,32 +390,33 @@
 
             static get properties() {
                 return {
-                    user: {
+                    tableSection: {
                         type: Object,
-                        statePath: 'user'
+                        value: {}
                     },
-                    tableSection:{
-                        type: Array,
-                        value: []
+                    isMobile: {
+                        type: Boolean,
+                        value: false
                     }
                 };
             }
 
-            createDescription(event){
-              const tabla = document.querySelector('#myTable');
-              let table_content = '';
-              for(let title in this.tableSection){ 
-                table_content = '<table>';
-                  table_content += '<th>${{title}}</th>';
-                    for(let description in this.tableSection[title]){
-                        table_content += '<tr>${{this.tableSection[title][description]}}</tr><tr>';
-                            for(let column in this.tableSection[title][description]){
-                    table_content += '<td>{{this.tableSection[title][description][column]}}</td>';
-                  }table_content += '</tr>';
-                  table_content += '</table>';
-                  tabla.innerHTML= table_content; 
-                    }
-                } 
+            connectedCallback() {
+                super.connectedCallback();
+
+                window.addEventListener('resize', (event) => {
+                    this._responsive();
+                });
+
+                this._responsive();
+            }
+
+            _responsive() {
+                if (this.$.table.clientWidth < 500) {
+                    this.set('isMobile', true);
+                } else {
+                    this.set('isMobile', false);
+                }
             }
 
              drawTable() {
