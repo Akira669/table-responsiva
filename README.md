@@ -1,67 +1,93 @@
-# Web Mobile Specialist
+# Backend environments
 
-## Summary
+### Modification of the package.json with npm and gulp
+___
+# New Features!
+
+  - Modify file package.json
+  - Create file gulpfile.js
+  - Create file server.js
+
+### How to use
+
+To start you have to do the following:
+
+```sh
+$ npm install
+$ npm run prepare
+```
+
+For development environments...
+
+```sh
+$ npm run develop 
+```
+
+For production environments...
+
+```sh
+$ npm run prod
+```
+### Environments
+
+Production environment
+```sh
+https://127.0.0.1:5000
+```
+
+Development environment
+```sh
+https://127.0.0.1:3000
+```
+
+### Plugins
+
+| Plugin | README |
+| ------ | ------ |
+| gulp | https://gulpjs.com/ |
+| bower | https://www.npmjs.com/package/bower |
+| nodejs | https://nodejs.org/es/docs/ |
+| git | https://git-scm.com/ |
+| yargs | https://www.npmjs.com/package/yargs |
+| chalk | https://www.npmjs.com/package/chalk |
+
+### Todos
+
+ - Write MORE Tests
+
+### COLLABORATORS
+- Juan carlos buen dia
+- Jose Ruben Capetillo
+- Adolfo Posadas Primero
+
+License
+----
+
+MIT
 
 
-1. Git
-    [Docs](https://git-scm.com/book/en/v2)
-    1. Workflow
-    1. Remotes
-    1. Branches
-    1. Commits
-    1. Tags
-    1. Commands
-    1. Arquitectura de componentes
+**Free Software, Hell Yeah!**
 
-1. JavaScript 2015 (While untils the course)
-   [Docs](https://developer.mozilla.org/bm/docs/Web/JavaScript)
-    1. Language syntax
-    1. Types
-    1. Error handling mechanisms
-    1. The global object
-    1. Scope
-    1. Closure
-    1. Arrow Functions
-    1. Modules
-1. Package managers
-    1. NPM -> CLI
-    1. Yarn
-    1. Bower
-1. Environment
-    1. How Browser works
-    1. IDE's and Code editors
-    1. Editor's code
-1. Browser Developer tools
-[Docs](https://developer.chrome.com/devtools)
-    1. Device mode
-    1. Panel
-        1. Application
-        1. Console
-1. Debugging
-    1. This is your best friend!
-1. Testing
-[Docs](https://facebook.github.io/jest/docs/en/getting-started.html)
-    1. Concepts
-    1. Jest
-    1. Unit Test (TDD)
-1. Web Components
-    1. Shadow DOM
-    1. Templates
-    1. HTML Imports
-    1. Custom Element
-1. Polymer 1 y 2
-[Docs](https://www.polymer-project.org/2.0/docs/devguide/feature-overview)
-1. Progressive Web Apps
-[Docs](https://developers.google.com/web/fundamentals/?hl=es)
-1. Performance
-1. Firebase
-[Docs](https://firebase.google.com/docs/guides/)
-    1. Hosting
-    1. Auth
-    1. Cloud functions
-    1. Server side rendering
+[//]: # (These are reference links used in the body of this note and get stripped out when the markdown processor does its job. There is no need to format nicely because it shouldn't be seen. Thanks SO - http://stackoverflow.com/questions/4823468/store-comments-in-markdown-syntax)
 
-## Contribuitors
 
--   Alfonso Ríos _*<malforime@gmail.com>*_
+   [dill]: <https://github.com/joemccann/dillinger>
+   [git-repo-url]: <https://github.com/joemccann/dillinger.git>
+   [john gruber]: <http://daringfireball.net>
+   [df1]: <http://daringfireball.net/projects/markdown/>
+   [markdown-it]: <https://github.com/markdown-it/markdown-it>
+   [Ace Editor]: <http://ace.ajax.org>
+   [node.js]: <http://nodejs.org>
+   [Twitter Bootstrap]: <http://twitter.github.com/bootstrap/>
+   [jQuery]: <http://jquery.com>
+   [@tjholowaychuk]: <http://twitter.com/tjholowaychuk>
+   [express]: <http://expressjs.com>
+   [AngularJS]: <http://angularjs.org>
+   [Gulp]: <http://gulpjs.com>
 
+   [PlDb]: <https://github.com/joemccann/dillinger/tree/master/plugins/dropbox/README.md>
+   [PlGh]: <https://github.com/joemccann/dillinger/tree/master/plugins/github/README.md>
+   [PlGd]: <https://github.com/joemccann/dillinger/tree/master/plugins/googledrive/README.md>
+   [PlOd]: <https://github.com/joemccann/dillinger/tree/master/plugins/onedrive/README.md>
+   [PlMe]: <https://github.com/joemccann/dillinger/tree/master/plugins/medium/README.md>
+   [PlGa]: <https://github.com/RahulHP/dillinger/blob/master/plugins/googleanalytics/README.md>
